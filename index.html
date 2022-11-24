@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		body{
+			background-image: url("https://c4.wallpaperflare.com/wallpaper/707/220/899/gradient-blue-pink-abstract-art-wallpaper-preview.jpg");
+			background-repeat: no-repeat;
+			background-size: 100%;
+			background-attachment: scroll;
+		}
+		#std{
+			font-size:15px;
+		}
+	</style>
+</head>
+<body>
+	<section id="update">
+		<input id="std" type="text" placeholder="enter name and class"}/><br/>
+		<input id="pass" placeholder="enter password"/><br/>
+		<button onclick="save()">submit</button>
+	</section>
+	<script type="text/javascript">
+		function save(){
+			var user=document.getElementById("std").value
+			console.log(user)
+			var add=document.getElementById("pass").value
+			console.log(add)
+		fetch("http://localhost:2005/newData",{
+			method:"POST",
+			headers:{
+				"Content-Type":"application/json"
+			},
+			body:JSON.stringify({name:user,password:add})
+		})
+		.then((res)=>{
+			console.log(res)
+			if(res.status===200)
+				alert("data is sucessfully added")
+		})
+		.catch((err)=>{
+			alert("error")
+		})
+	}
+	</script>
+
+</body>
+</html>
